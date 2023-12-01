@@ -12,7 +12,8 @@ TEST_YEAR = 1000
 @pytest.fixture(autouse=True)
 def cleanup_files():
     try:
-        Path.unlink(f"{os.environ['HOME']}/.cache/aoc/infile_{TEST_YEAR}_1")
+        p = Path(f"{os.environ['HOME']}/.cache/aoc/infile_{TEST_YEAR}_1")
+        p.unlink()
     except FileNotFoundError:
         pass
 
