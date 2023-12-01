@@ -22,7 +22,7 @@ def get_input(year: int, day: int) -> str:
     except KeyError:
         raise KeyError(
             "Environment variable AOC_COOKIE is not set. Log in to Advent of Code, get your session cookie from the "
-            "browser, and set it to the environment variable AOC_COOKIE"
+            "browser, and set it to the environment variable AOC_COOKIE."
         )
 
     try:
@@ -48,7 +48,7 @@ def submit(answer: Any, year: int, day: int, level: int) -> None:
     except KeyError:
         raise KeyError(
             "Environment variable AOC_COOKIE is not set. Log in to Advent of Code, get your session cookie from the "
-            "browser, and set it to the environment variable AOC_COOKIE"
+            "browser, and set it to the environment variable AOC_COOKIE."
         )
     headers = {
         "Cookie": f"session={cookie}",
