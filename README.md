@@ -1,5 +1,11 @@
 # aoc-tool
 
+These functions help to automate getting inputs and submitting results to Advent of Code. 
+
+Inputs are cached locally in `$HOME/.cache/aoc`. 
+
+Please throttle your submissions to Advent of Code's servers.
+
 ## Installation
 
 ```bash
