@@ -14,12 +14,21 @@ def get_input(year: int, day: int) -> str:
     basepath = Path(f"{os.environ['HOME']}/.cache/aoc")
     basepath.mkdir(parents=True, exist_ok=True)
     p = basepath / f"infile_{year}_{day}"
+
+    try:
+        cookie = os.environ["AOC_COOKIE"]
+    except KeyError:
+        raise KeyError(
+            "Environment variable AOC_COOKIE is not set. Log in to Advent of Code, get your session cookie from the "
+            "browser, and set it to the environment variable AOC_COOKIE"
+        )
+
     try:
         aoc_input = p.read_text()
     except FileNotFoundError:
         url = f"https://adventofcode.com/{year}/day/{day}/input"
         headers = {
-            "Cookie": f"session={os.environ['AOC_COOKIE']}",
+            "Cookie": f"session={cookie}",
             "User-Agent": "github.com/wesbarnett/aoc-tool by wes@barnettphd.com",
         }
         req = request.Request(url, headers=headers)
@@ -32,7 +41,14 @@ def get_input(year: int, day: int) -> str:
 def submit(answer: Any, year: int, day: int, level: int) -> None:
     """Submit answer to Advent of Code for given day, year, and level."""
     url = f"https://adventofcode.com/{year}/day/{day}/answer"
-    headers = {"Cookie": f"session={os.environ['AOC_COOKIE']}"}
+    try:
+        cookie = os.environ["AOC_COOKIE"]
+    except KeyError:
+        raise KeyError(
+            "Environment variable AOC_COOKIE is not set. Log in to Advent of Code, get your session cookie from the "
+            "browser, and set it to the environment variable AOC_COOKIE"
+        )
+    headers = {"Cookie": f"session={cookie}"}
     data = parse.urlencode({"level": level, "answer": answer}).encode()
     req = request.Request(url, data=data, headers=headers)
     with request.urlopen(req) as response:
