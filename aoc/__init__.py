@@ -8,6 +8,8 @@ from pathlib import Path
 from typing import Any
 from urllib import parse, request
 
+USER_AGENT = "github.com/wesbarnett/aoc-tool by wes@barnettphd.com"
+
 
 def get_input(year: int, day: int) -> str:
     """Get input for specified year & day, cache locally."""
@@ -29,7 +31,7 @@ def get_input(year: int, day: int) -> str:
         url = f"https://adventofcode.com/{year}/day/{day}/input"
         headers = {
             "Cookie": f"session={cookie}",
-            "User-Agent": "github.com/wesbarnett/aoc-tool by wes@barnettphd.com",
+            "User-Agent": USER_AGENT,
         }
         req = request.Request(url, headers=headers)
         with request.urlopen(req) as response:
@@ -48,7 +50,10 @@ def submit(answer: Any, year: int, day: int, level: int) -> None:
             "Environment variable AOC_COOKIE is not set. Log in to Advent of Code, get your session cookie from the "
             "browser, and set it to the environment variable AOC_COOKIE"
         )
-    headers = {"Cookie": f"session={cookie}"}
+    headers = {
+        "Cookie": f"session={cookie}",
+        "User-Agent": USER_AGENT,
+    }
     data = parse.urlencode({"level": level, "answer": answer}).encode()
     req = request.Request(url, data=data, headers=headers)
     with request.urlopen(req) as response:
