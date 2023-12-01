@@ -8,6 +8,8 @@ python3 -m pip install git+https://github.com/wesbarnett/aoc-tool
 
 ## Usage
 
+Log in to [Advent of Code](https://adventofcode.com). Get your session cookie from the browser and save to an environment variable named `AOC_COOKIE`.
+
 ```python
 from aoc import get_input, submit
 
