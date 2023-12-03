@@ -1,4 +1,4 @@
-# aoc-tool
+# 🎄aoc-tool 🎁
 
 These functions help to automate getting inputs and submitting results to Advent of Code. 
 
