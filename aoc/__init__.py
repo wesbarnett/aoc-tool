@@ -5,34 +5,11 @@ environment variable AOC_COOKIE.
 
 import os
 import re
-from html.parser import HTMLParser
-from io import StringIO
 from pathlib import Path
 from typing import Any
 from urllib import parse, request
 
 USER_AGENT = "github.com/wesbarnett/aoc-tool by wes@barnettphd.com"
-
-
-class MLStripper(HTMLParser):
-    def __init__(self):
-        super().__init__()
-        self.reset()
-        self.strict = False
-        self.convert_charrefs = True
-        self.text = StringIO()
-
-    def handle_data(self, d):
-        self.text.write(d)
-
-    def get_data(self):
-        return self.text.getvalue()
-
-
-def strip_tags(html):
-    s = MLStripper()
-    s.feed(html)
-    return s.get_data()
 
 
 def get_input(year: int, day: int) -> str:
@@ -81,6 +58,8 @@ def submit(answer: Any, year: int, day: int, level: int) -> None:
     data = parse.urlencode({"level": level, "answer": answer}).encode()
     req = request.Request(url, data=data, headers=headers)
     with request.urlopen(req) as response:
-        html = response.read().decode("utf-8")
-    text = strip_tags(re.findall("<article><p>(.*)</p></article>", html)[0])
+        resp = response.read().decode("utf-8")
+    match = re.findall("<article><p>(.*)</p></article>", resp)[0]
+    tag_re = re.compile(r"(<!--.*?-->|<[^>]*>)")
+    text = tag_re.sub("", match)
     print(text)

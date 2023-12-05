@@ -53,9 +53,15 @@ def test_get_input(mock_urlopen):
 def test_submit(mock_urlopen, capsys):
     os.environ["AOC_COOKIE"] = "cookie"
     mock = MagicMock()
-    mock.read.return_value = b"Test data"
+    mock.read.return_value = b"""
+    <html>
+    <body>
+    <article><p>Test data <a href="some_url">[Return]</a></p></article>
+    </body>
+    </html>
+    """
     mock.__enter__.return_value = mock
     mock_urlopen.return_value = mock
     submit("foo", TEST_YEAR, 1, 1)
     mock_urlopen.assert_called_once()
-    assert capsys.readouterr().out == "Test data\n"
+    assert capsys.readouterr().out == "Test data [Return]\n"
