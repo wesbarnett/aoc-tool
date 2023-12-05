@@ -1,10 +1,14 @@
 # aoc-tool
 
-These functions help to automate getting inputs and submitting results to Advent of Code. 
+Python functions to automate getting inputs and submitting results to Advent of Code. 
 
 Inputs are cached locally in `$HOME/.cache/aoc`. 
 
 Please throttle your submissions to Advent of Code's servers.
+
+## Dependencies
+
+None.
 
 ## Installation
 
@@ -14,7 +18,7 @@ python3 -m pip install git+https://github.com/wesbarnett/aoc-tool
 
 ## Usage
 
-Log in to [Advent of Code](https://adventofcode.com). Get your session cookie from the browser and save to an environment variable named `AOC_COOKIE`.
+Log in to [Advent of Code](https://adventofcode.com). Get your session cookie from the browser and save it to an environment variable named `AOC_COOKIE`.
 
 ```python
 from aoc import get_input, submit
