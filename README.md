@@ -1,4 +1,4 @@
-# aoc-tool
+# 🎄aoc-tool 🎁
 
 Python functions to automate getting inputs and submitting results to Advent of Code. 
 
