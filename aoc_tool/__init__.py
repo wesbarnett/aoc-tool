@@ -14,7 +14,7 @@ USER_AGENT = "github.com/wesbarnett/aoc-tool by wes@barnettphd.com"
 
 def get_input(year: int, day: int) -> str:
     """Get input for specified year & day, cache locally."""
-    basepath = Path(f"{os.environ['HOME']}/.cache/aoc")
+    basepath = Path(f"{os.environ['HOME']}/.cache/aoc_tool")
     basepath.mkdir(parents=True, exist_ok=True)
     p = basepath / f"infile_{year}_{day}"
 
