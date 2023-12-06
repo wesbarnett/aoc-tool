@@ -56,7 +56,9 @@ def test_submit(mock_urlopen, capsys):
     mock.read.return_value = b"""
     <html>
     <body>
-    <article><p>Test data <a href="some_url">[Return]</a></p></article>
+    <article>
+    <p>Test data <a href="some_url">[Return]</a></p>
+    </article>
     </body>
     </html>
     """
