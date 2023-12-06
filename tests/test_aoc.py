@@ -3,7 +3,8 @@ from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import pytest
-from aoc_test import get_input, submit
+
+from aoc_tool import get_input, submit
 
 TEST_YEAR = 1000
 
