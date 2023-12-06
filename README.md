@@ -1,10 +1,6 @@
 # 🎄aoc-tool 🎁
 
-Python functions to automate getting inputs and submitting results to Advent of Code. 
-
-Inputs are cached locally in `$HOME/.cache/aoc_tool`. 
-
-Please throttle your submissions to Advent of Code's servers.
+Python functions to aid in getting inputs and submitting results to Advent of Code. The package provides `get_input` which gets and caches a day's input file and `submit` which submits an answer and displays the server's response. Inputs are cached locally in `$HOME/.cache/aoc_tool`. Please throttle your submissions to Advent of Code's servers when using `submit`.
 
 ## Dependencies
 
