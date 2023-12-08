@@ -61,5 +61,5 @@ def submit(answer: Any, year: int, day: int, level: int) -> None:
         resp = response.read().decode("utf-8")
     match = re.findall("<article>(.*)</article>", resp, re.S)
     tag_re = re.compile(r"(<!--.*?-->|<[^>]*>)")
-    text = tag_re.sub("", match[0])
+    text = tag_re.sub("", match[0]).lstrip("\n").rstrip("\n")
     print(text)
