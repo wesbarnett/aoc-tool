@@ -12,7 +12,7 @@ TEST_YEAR = 1000
 @pytest.fixture(autouse=True)
 def cleanup_files():
     try:
-        p = Path(f"{os.environ['HOME']}/.cache/aoc/infile_{TEST_YEAR}_1")
+        p = Path(f"{os.environ['HOME']}/.cache/aoc_tool/infile_{TEST_YEAR}_1")
         p.unlink()
     except FileNotFoundError:
         pass
@@ -54,14 +54,14 @@ def test_submit(mock_urlopen, capsys):
     os.environ["AOC_COOKIE"] = "cookie"
     mock = MagicMock()
     mock.read.return_value = b"""
-    <html>
-    <body>
-    <article>
-    <p>Test data <a href="some_url">[Return]</a></p>
-    </article>
-    </body>
-    </html>
-    """
+<html>
+<body>
+<article>
+<p>Test data <a href="some_url">[Return]</a></p>
+</article>
+</body>
+</html>
+"""
     mock.__enter__.return_value = mock
     mock_urlopen.return_value = mock
     submit("foo", TEST_YEAR, 1, 1)

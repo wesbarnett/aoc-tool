@@ -59,7 +59,7 @@ def submit(answer: Any, year: int, day: int, level: int) -> None:
     req = request.Request(url, data=data, headers=headers)
     with request.urlopen(req) as response:
         resp = response.read().decode("utf-8")
-    match = re.findall("<p>(.*)</p>", resp)[0]
+    match = re.findall("<article>(.*)</article>", resp, re.S)
     tag_re = re.compile(r"(<!--.*?-->|<[^>]*>)")
-    text = tag_re.sub("", match)
+    text = tag_re.sub("", match[0])
     print(text)
