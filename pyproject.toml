@@ -9,4 +9,4 @@ authors = [
 description = "Minimal helper functions for Advent of Code"
 license = {text = "MIT"}
 name = "aoc-tool"
-version = "0.0.3"
+version = "0.0.4"
