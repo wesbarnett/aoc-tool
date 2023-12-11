@@ -38,7 +38,7 @@ def get_input(year: int, day: int) -> str:
         with request.urlopen(req) as response:
             aoc_input = response.read().decode("utf-8")
             p.write_text(aoc_input)
-    return aoc_input.rstrip("\n")
+    return aoc_input
 
 
 def submit(answer: Any, year: int, day: int, level: int) -> None:
